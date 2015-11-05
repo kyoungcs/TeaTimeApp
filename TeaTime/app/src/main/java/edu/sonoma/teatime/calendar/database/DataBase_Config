@@ -1,0 +1,13 @@
+DataBase_Config.php
+
+<?php
+
+/* Created by Kyle on 11/5/2015.
+ * All database connection variables
+ */
+
+define('DB_USER', "young"); // db user
+define('DB_PASSWORD', "3656340"); // db password (mention your db password here)
+define('DB_DATABASE', "young"); // database name
+define('DB_SERVER', "130.157.118.11:1282"); // db server
+?>
