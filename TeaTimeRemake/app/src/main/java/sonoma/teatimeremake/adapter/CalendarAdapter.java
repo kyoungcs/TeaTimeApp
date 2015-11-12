@@ -158,18 +158,16 @@ public class CalendarAdapter extends BaseAdapter {
         items.clear();
         day_string.clear();
         Locale.setDefault(Locale.US);
-        pmonth = (GregorianCalendar) month.clone();
+        this.pmonth = (GregorianCalendar)this.month.clone();
+        this.firstDay = this.month.getActualMinimum(GregorianCalendar.DATE);
+        this.maxWeekNumber = this.month.getActualMaximum(GregorianCalendar.WEEK_OF_MONTH);
+        this.mnthlength = this.maxWeekNumber * 7;
+        this.maxP = this.getMaxP();
+        this.calMaxP = this.maxP - (this.firstDay - 1);
+        this.pmonthMaxSet = (GregorianCalendar)this.pmonth.clone();
+        //this.pmonthMaxSet.set(5, this.calMaxP + 1);
 
-        firstDay = month.get(GregorianCalendar.DAY_OF_WEEK);
-
-        maxWeekNumber = month.getActualMaximum(GregorianCalendar.WEEK_OF_MONTH);
-
-        mnthlength = maxWeekNumber * 7;
-
-        maxP = getMaxP();
-        calMaxP = maxP - (firstDay - 1);
-
-        pmonthMaxSet.add(GregorianCalendar.DATE, 1);
+        pmonthMaxSet.set(GregorianCalendar.DAY_OF_MONTH, calMaxP + 1);
 
         for(int nn = 0; nn < mnthlength; nn++){
 
@@ -209,6 +207,7 @@ public class CalendarAdapter extends BaseAdapter {
                 }
             }
         }
+
     }
 
     public void getPositionList(String date, final Activity act){
