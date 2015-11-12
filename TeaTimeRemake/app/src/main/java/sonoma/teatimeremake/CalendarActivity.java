@@ -1,6 +1,8 @@
 package sonoma.teatimeremake;
 
 import android.os.Bundle;
+
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -30,9 +32,14 @@ public class CalendarActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        CalendarCollection.date_collection_arr = new ArrayList();
+        CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-11-12", "John Birthday"));
+
+
+
         cal_month = (GregorianCalendar) GregorianCalendar.getInstance();
         cal_month_copy = (GregorianCalendar) cal_month.clone();
-        //cal_adapter = new CalendarAdapter(this, cal_month, CalendarCollection.date_collection_arr);
+        cal_adapter = new CalendarAdapter(this, cal_month, CalendarCollection.date_collection_arr);
 
         tv_month = (TextView) findViewById(R.id.tv_month);
         tv_month.setText(android.text.format.DateFormat.format("MMMM yyyy", cal_month));
@@ -43,7 +50,6 @@ public class CalendarActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                //this is going to show the previous month
                 setPreviousMonth();
                 refreshCalendar();
             }
@@ -54,7 +60,6 @@ public class CalendarActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                //this is going to show next month
                 setNextMonth();
                 refreshCalendar();
 
@@ -66,19 +71,16 @@ public class CalendarActivity extends AppCompatActivity {
         gridview.setAdapter(cal_adapter);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
                 ((CalendarAdapter) parent.getAdapter()).setSelected(v, position);
-                String selectedGridDate = CalendarAdapter.day_string
-                        .get(position);
+                String selectedGridDate = CalendarAdapter.day_string.get(position);
 
                 String[] separatedTime = selectedGridDate.split("-");
                 String gridvalueString = separatedTime[2].replaceFirst("^0*", "");
                 int gridvalue = Integer.parseInt(gridvalueString);
 
                 if ((gridvalue > 10) && (position < 8)) {
-
                     setPreviousMonth();
                     refreshCalendar();
                 } else if ((gridvalue < 7) && (position > 28)) {
@@ -115,25 +117,19 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
     protected void setNextMonth() {
-        if (cal_month.get(GregorianCalendar.MONTH) == cal_month
-                .getActualMaximum(GregorianCalendar.MONTH)) {
-            cal_month.set((cal_month.get(GregorianCalendar.YEAR) + 1),
-                    cal_month.getActualMinimum(GregorianCalendar.MONTH), 1);
+        if (cal_month.get(GregorianCalendar.MONTH) == cal_month.getActualMaximum(GregorianCalendar.MONTH)) {
+            cal_month.set((cal_month.get(GregorianCalendar.YEAR) + 1), cal_month.getActualMinimum(GregorianCalendar.MONTH), 1);
         } else {
-            cal_month.set(GregorianCalendar.MONTH,
-                    cal_month.get(GregorianCalendar.MONTH) + 1);
+            cal_month.set(GregorianCalendar.MONTH, cal_month.get(GregorianCalendar.MONTH) + 1);
         }
 
     }
 
     protected void setPreviousMonth() {
-        if (cal_month.get(GregorianCalendar.MONTH) == cal_month
-                .getActualMinimum(GregorianCalendar.MONTH)) {
-            cal_month.set((cal_month.get(GregorianCalendar.YEAR) - 1),
-                    cal_month.getActualMaximum(GregorianCalendar.MONTH), 1);
+        if (cal_month.get(GregorianCalendar.MONTH) == cal_month.getActualMinimum(GregorianCalendar.MONTH)) {
+            cal_month.set((cal_month.get(GregorianCalendar.YEAR) - 1), cal_month.getActualMaximum(GregorianCalendar.MONTH), 1);
         } else {
-            cal_month.set(GregorianCalendar.MONTH,
-                    cal_month.get(GregorianCalendar.MONTH) - 1);
+            cal_month.set(GregorianCalendar.MONTH, cal_month.get(GregorianCalendar.MONTH) - 1);
         }
 
     }
