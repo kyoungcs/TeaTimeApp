@@ -96,7 +96,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
-            @Override
+
             public void onClick(View view) {
                 Snackbar.make(view, "This is for the adding elements.", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
@@ -105,7 +105,6 @@ public class CalendarActivity extends AppCompatActivity {
 
         FloatingActionButton tester = (FloatingActionButton) findViewById(R.id.tester);
         tester.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
                 /*
                 do the stuff you want to do in here, probably befor the pop-up
