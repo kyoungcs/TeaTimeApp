@@ -1,5 +1,6 @@
 package sonoma.teatimeremake;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class CalendarActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         CalendarCollection.date_collection_arr = new ArrayList();
-        CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-11-12", "John Birthday"));
+        CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-11-13", "Dad Birthday"));
 
 
 
@@ -98,8 +99,9 @@ public class CalendarActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                Snackbar.make(view, "This is for the adding elements.", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(CalendarActivity.this,NewEventActivity.class));
+                refreshCalendar();
+                Snackbar.make(view, "This is for the adding elements.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
 
@@ -109,8 +111,8 @@ public class CalendarActivity extends AppCompatActivity {
                 /*
                 do the stuff you want to do in here, probably befor the pop-up
                 */
-                Snackbar.make(view, "This is for testing server-side.", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                refreshCalendar();
+                Snackbar.make(view, "This is for testing server-side.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
     }

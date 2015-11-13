@@ -12,7 +12,6 @@ public class CalendarCollection {
     public static ArrayList<CalendarCollection> date_collection_arr;
 
     public CalendarCollection(){
-        this.date_collection_arr = new ArrayList();
     }
 
     public  CalendarCollection(String date, String event_message){

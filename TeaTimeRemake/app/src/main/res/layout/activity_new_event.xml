@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Date:"
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal" />
@@ -32,6 +32,8 @@
             android:inputType="date"
             android:ems="10"
             android:id="@+id/eventDate" />
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -44,7 +46,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Discription"
             android:id="@+id/textView4"
             android:layout_gravity="center_horizontal" />
@@ -59,8 +61,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
+        android:text="New Event"
+        android:id="@+id/eventButton"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
