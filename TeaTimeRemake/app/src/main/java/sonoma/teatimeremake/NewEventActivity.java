@@ -23,6 +23,7 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
 
         inputMessage = (EditText)findViewById(R.id.eventMessage);
 
+
         eventButton = (Button) findViewById(R.id.eventButton);
         eventButton.setOnClickListener(this);
     }
@@ -36,7 +37,7 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                 date = "2015-11-26";
                 //at moment, unused on purpose
                 time = 0;
-                eventMessage = "Thanksgiving";
+                eventMessage = inputMessage.getText().toString();
                 //need to add time to CalendarCollection
                 CalendarCollection.date_collection_arr.add(new CalendarCollection(date, eventMessage));
 

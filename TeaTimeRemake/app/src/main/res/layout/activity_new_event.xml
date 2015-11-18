@@ -29,16 +29,19 @@
         <Spinner
             android:layout_width="92dp"
             android:layout_height="wrap_content"
+            android:entries="@array/days"
             android:id="@+id/daySpinner" />
 
         <Spinner
             android:layout_width="128dp"
             android:layout_height="wrap_content"
+            android:entries="@array/months"
             android:id="@+id/monthSpinner" />
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:entries="@array/year"
             android:id="@+id/yearSpinner" />
 
 

@@ -19,8 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".NewEventActivity"
-            android:parentActivityName=".CalendarActivity">
+            android:name=".NewEventActivity">
         </activity>
         <activity
             android:name=".DayViewActivity"
