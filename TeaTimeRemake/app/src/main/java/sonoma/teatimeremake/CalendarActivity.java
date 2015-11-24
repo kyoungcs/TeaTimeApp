@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import sonoma.teatimeremake.adapter.CalendarAdapter;
 import sonoma.teatimeremake.util.CalendarCollection;
+import sonoma.teatimeremake.util.DayCollection;
 
 
 public class CalendarActivity extends AppCompatActivity {
@@ -33,6 +34,8 @@ public class CalendarActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //DayCollection.clearEvents();
+        DayCollection.daysEvents = new ArrayList();
         CalendarCollection.date_collection_arr = new ArrayList();
         CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-11-13","Dad's Birthday", "Dad Birthday", -1));
 
@@ -91,6 +94,8 @@ public class CalendarActivity extends AppCompatActivity {
                 ((CalendarAdapter) parent.getAdapter()).setSelected(v, position);
 
                 ((CalendarAdapter) parent.getAdapter()).getPositionList(selectedGridDate, CalendarActivity.this);
+                if(DayCollection.waitingToRun())
+                    startActivity(new Intent(CalendarActivity.this,DayViewActivity.class));
             }
 
         });

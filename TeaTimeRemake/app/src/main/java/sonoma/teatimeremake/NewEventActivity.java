@@ -98,7 +98,7 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                 eventName = inputName.getText().toString();
                 eventMessage = inputMessage.getText().toString();
                 //need to add time to CalendarCollection
-                CalendarCollection.date_collection_arr.add(new CalendarCollection(date, eventName, eventMessage, time));
+                CalendarCollection.date_collection_arr.add(new CalendarCollection(date, eventName, eventMessage,hours, mins, time));
                 finish();
 
             default:

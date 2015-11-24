@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +21,11 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
+import sonoma.teatimeremake.CalendarActivity;
+import sonoma.teatimeremake.DayViewActivity;
 import sonoma.teatimeremake.R;
 import sonoma.teatimeremake.util.CalendarCollection;
+import sonoma.teatimeremake.util.DayCollection;
 
 /**
  * Created by Austin on 11/7/2015.
@@ -211,32 +215,41 @@ public class CalendarAdapter extends BaseAdapter {
     }
 
     public void getPositionList(String date, final Activity act){
+        DayCollection.clearEvents();
         int len=CalendarCollection.date_collection_arr.size();
+
         for (int i = 0; i < len; i++) {
             CalendarCollection cal_collection=CalendarCollection.date_collection_arr.get(i);
             String event_date=cal_collection.date;
 
-            String event_message=cal_collection.event_message;
+            //String event_message=cal_collection.event_message;
 
             if (date.equals(event_date)) {
 
-                Toast.makeText(context, "You have event on this date: " + event_date, Toast.LENGTH_LONG).show();
-                new AlertDialog.Builder(context)
+                //Toast.makeText(context, "You have event on this date: " + event_date, Toast.LENGTH_LONG).show();
+
+                DayCollection.addEventToday(cal_collection);
+
+                /*new AlertDialog.Builder(context)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setTitle("Date: "+event_date)
-                        .setMessage("Event: "+event_message)
+                        //.setMessage("Event: "+event_message)
                         .setPositiveButton("OK",new android.content.DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int which)
                             {
                                 act.finish();
                             }
                         }).show();
-                break;
+                break;*/
             }else{
 
 
             }
         }
+        if(DayCollection.hasEvents())
+            DayCollection.startRunNext();
+         else
+            DayCollection.notNext();
     }
 }
 
