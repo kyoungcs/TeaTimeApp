@@ -16,6 +16,26 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Name:"
+            android:id="@+id/textView5" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
@@ -27,13 +47,13 @@
             android:layout_gravity="center_horizontal" />
 
         <Spinner
-            android:layout_width="92dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:entries="@array/days"
             android:id="@+id/daySpinner" />
 
         <Spinner
-            android:layout_width="128dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:entries="@array/months"
             android:id="@+id/monthSpinner" />
@@ -44,6 +64,46 @@
             android:entries="@array/year"
             android:id="@+id/yearSpinner" />
 
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Time: "
+            android:id="@+id/textView6" />
+
+        <Spinner
+            android:layout_width="98dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/hours"
+            android:id="@+id/hourSpin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=" : "
+            android:id="@+id/textView7" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/minutes"
+            android:id="@+id/minuteSpin" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AM/PM"
+            android:id="@+id/ampmSwitch" />
 
     </LinearLayout>
 
@@ -58,7 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Discription"
+            android:text="Discription: "
             android:id="@+id/textView4"
             android:layout_gravity="center_horizontal" />
 
@@ -75,5 +135,6 @@
         android:text="New Event"
         android:id="@+id/eventButton"
         android:layout_gravity="center_horizontal" />
+
 
 </LinearLayout>

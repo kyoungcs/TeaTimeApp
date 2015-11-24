@@ -42,10 +42,10 @@ public class CalendarAdapter extends BaseAdapter {
     private ArrayList<String> items;
     public static List<String> day_string;
     private View previousView;
-    public ArrayList<CalendarCollection> date_collention_arr;
+    public ArrayList<CalendarCollection> date_collection_arr;
 
-    public CalendarAdapter(Context context, GregorianCalendar monthCalendar, ArrayList<CalendarCollection> date_collention_arr){
-        this.date_collention_arr = date_collention_arr;
+    public CalendarAdapter(Context context, GregorianCalendar monthCalendar, ArrayList<CalendarCollection> date_collection_arr){
+        this.date_collection_arr = date_collection_arr;
         CalendarAdapter.day_string = new ArrayList<String>();
         Locale.setDefault(Locale.US);
         month = monthCalendar;
@@ -207,7 +207,6 @@ public class CalendarAdapter extends BaseAdapter {
                 }
             }
         }
-
     }
 
     public void getPositionList(String date, final Activity act){
