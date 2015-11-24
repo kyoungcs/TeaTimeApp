@@ -165,6 +165,7 @@ public class CalendarAdapter extends BaseAdapter {
         this.maxP = this.getMaxP();
         this.calMaxP = this.maxP - (this.firstDay - 1);
         this.pmonthMaxSet = (GregorianCalendar)this.pmonth.clone();
+        //i think that this is the thing that needs to be fixxed to make the calendar run properly
         //this.pmonthMaxSet.set(5, this.calMaxP + 1);
 
         pmonthMaxSet.set(GregorianCalendar.DAY_OF_MONTH, calMaxP + 1);

@@ -13,13 +13,13 @@ import sonoma.teatimeremake.util.CalendarCollection;
 public class NewEventActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button eventButton;
-    String date, eventMessage;
+    String date, eventMessage, eventName;
     //for adding hours+mins
     int time;
     private Spinner inputHour, inputMin, inputDay, inputMonth, inputYear;
-    private EditText inputMessage;
+    private EditText inputMessage, inputName;
     private Switch inputAMPM;
-    boolean ampm;
+    //boolean ampm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,7 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_new_event);
 
         inputMessage = (EditText)findViewById(R.id.eventMessage);
+        inputName = (EditText)findViewById(R.id.editName);
 
         inputHour = (Spinner)findViewById(R.id.hourSpin);
         inputMin = (Spinner)findViewById(R.id.minuteSpin);
@@ -49,7 +50,13 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                 String days, years;
                 String months;
 
-                ampm = inputAMPM.isChecked();
+                int hours, mins;
+
+                hours = inputHour.getSelectedItemPosition();
+                hours = hours * 100;
+                mins = inputMin.getSelectedItemPosition();
+
+                //ampm = inputAMPM.isChecked();
 
                 days = inputDay.getSelectedItem().toString();
                 months = inputMonth.getSelectedItem().toString();
@@ -80,13 +87,18 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                 else if(months.equals("December"))
                     months = "12";
 
+                if(inputAMPM.isChecked())
+                    hours = hours + 1200;
+
+
                 //date = "2015-01-26";
                 date = String.format("%s-%s-%s", years, months, days);
                 //at moment, unused on purpose
-                time = 0;
+                time = hours+mins;
+                eventName = inputName.getText().toString();
                 eventMessage = inputMessage.getText().toString();
                 //need to add time to CalendarCollection
-                CalendarCollection.date_collection_arr.add(new CalendarCollection(date, eventMessage));
+                CalendarCollection.date_collection_arr.add(new CalendarCollection(date, eventName, eventMessage, time));
                 finish();
 
             default:

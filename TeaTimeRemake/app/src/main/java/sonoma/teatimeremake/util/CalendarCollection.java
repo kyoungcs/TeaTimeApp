@@ -8,18 +8,20 @@ import java.util.ArrayList;
 public class CalendarCollection {
     public String date = "";
     public String event_message = "";
-    public String time = "";
+    public int time = 0;
+    public String eventName = "";
 
     public static ArrayList<CalendarCollection> date_collection_arr;
 
     public CalendarCollection(){
     }
 
-    public  CalendarCollection(String date, String event_message, String time){
+    public  CalendarCollection(String date, String eventName, String event_message, int time){
 
         this.date = date;
         this.event_message=event_message;
         this.time = time;
+        this.eventName = eventName;
 
     }
 }
