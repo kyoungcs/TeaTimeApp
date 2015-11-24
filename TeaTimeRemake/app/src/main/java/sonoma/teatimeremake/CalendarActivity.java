@@ -34,7 +34,7 @@ public class CalendarActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         CalendarCollection.date_collection_arr = new ArrayList();
-        CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-11-13", "Dad Birthday"));
+        CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-11-13","Dad's Birthday", "Dad Birthday", -1));
 
 
 
