@@ -3,30 +3,32 @@ package sonoma.teatimeremake;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+
 import sonoma.teatimeremake.adapter.CalendarAdapter;
+import sonoma.teatimeremake.adapter.GroupCalendarAdapter;
 import sonoma.teatimeremake.util.CalendarCollection;
 import sonoma.teatimeremake.util.DayCollection;
+import sonoma.teatimeremake.util.GroupDayCollection;
 
 
-public class CalendarActivity extends AppCompatActivity {
+public class GroupCalendarActivity extends AppCompatActivity {
     public GregorianCalendar cal_month, cal_month_copy;
-    private CalendarAdapter cal_adapter;
+    private GroupCalendarAdapter cal_adapter;
     private TextView tv_month;
 
     @Override
@@ -36,18 +38,16 @@ public class CalendarActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DayCollection.clearEvents();
-/*
-        DayCollection.daysEvents = new ArrayList();
+        //DayCollection.clearEvents();
+        /*DayCollection.daysEvents = new ArrayList();
         CalendarCollection.date_collection_arr = new ArrayList();
         CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-11-13","Dad's Birthday", "Dad Birthday", -1));
 */
 
 
-
         cal_month = (GregorianCalendar) GregorianCalendar.getInstance();
         cal_month_copy = (GregorianCalendar) cal_month.clone();
-        cal_adapter = new CalendarAdapter(this, cal_month, CalendarCollection.date_collection_arr);
+        cal_adapter = new GroupCalendarAdapter(this, cal_month, CalendarCollection.date_collection_arr);
 
         tv_month = (TextView) findViewById(R.id.tv_month);
         tv_month.setText(android.text.format.DateFormat.format("MMMM yyyy", cal_month));
@@ -97,17 +97,15 @@ public class CalendarActivity extends AppCompatActivity {
                 }
                 ((CalendarAdapter) parent.getAdapter()).setSelected(v, position);
 
-                ((CalendarAdapter) parent.getAdapter()).getPositionList(selectedGridDate, CalendarActivity.this);
-                if(DayCollection.waitingToRun()){
+                ((CalendarAdapter) parent.getAdapter()).getPositionList(selectedGridDate, GroupCalendarActivity.this);
+                if(GroupDayCollection.waitingToRun()) {
                     Context context = getApplicationContext();
                     int duration = Toast.LENGTH_SHORT;
                     String text = DayCollection.daysEvents.get(0).event_message;
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
-                    //startActivity(new Intent(CalendarActivity.this,DayViewActivity.class));
-                    DayCollection.notNext();
+                    //startActivity(new Intent(GroupCalendarActivity.this, DayViewActivity.class));
                 }
-
             }
 
         });
@@ -116,7 +114,7 @@ public class CalendarActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                startActivity(new Intent(CalendarActivity.this,NewEventActivity.class));
+                startActivity(new Intent(GroupCalendarActivity.this,NewEventActivity.class));
                 refreshCalendar();
                 Snackbar.make(view, "This is for the adding elements.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
