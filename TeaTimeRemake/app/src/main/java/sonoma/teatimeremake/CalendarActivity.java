@@ -116,9 +116,9 @@ public class CalendarActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                startActivity(new Intent(CalendarActivity.this,NewEventActivity.class));
+                startActivity(new Intent(CalendarActivity.this, NewEventActivity.class));
                 refreshCalendar();
-                Snackbar.make(view, "This is for the adding elements.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                //Snackbar.make(view, "This is for the adding elements.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
 
@@ -128,8 +128,9 @@ public class CalendarActivity extends AppCompatActivity {
                 /*
                 do the stuff you want to do in here, probably befor the pop-up
                 */
+                startActivity(new Intent(CalendarActivity.this, GroupCalendarActivity.class));
                 refreshCalendar();
-                Snackbar.make(view, "This is for testing server-side.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                //Snackbar.make(view, "This is for testing server-side.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
     }

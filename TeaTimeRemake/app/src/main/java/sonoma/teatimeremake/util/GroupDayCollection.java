@@ -6,10 +6,10 @@ import java.util.ArrayList;
  * Created by Austin on 11/24/2015.
  */
 public class GroupDayCollection {
-    public static ArrayList<CalendarCollection> daysEvents;
+    public static ArrayList<GroupCalendarCollection> daysEvents;
     private static boolean runNext;
 
-    public static void addEventToday(CalendarCollection cal_collection) {
+    public static void addEventToday(GroupCalendarCollection cal_collection) {
         daysEvents.add(cal_collection);
     }
 

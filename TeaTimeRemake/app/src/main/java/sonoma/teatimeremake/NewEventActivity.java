@@ -8,7 +8,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 
+import sonoma.teatimeremake.adapter.GroupCalendarAdapter;
 import sonoma.teatimeremake.util.CalendarCollection;
+import sonoma.teatimeremake.util.GroupCalendarCollection;
 
 public class NewEventActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -18,7 +20,7 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
     int time;
     private Spinner inputHour, inputMin, inputDay, inputMonth, inputYear;
     private EditText inputMessage, inputName;
-    private Switch inputAMPM;
+    private Switch inputAMPM, inputGroup;
     //boolean ampm;
 
     @Override
@@ -32,6 +34,8 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
         inputHour = (Spinner)findViewById(R.id.hourSpin);
         inputMin = (Spinner)findViewById(R.id.minuteSpin);
         inputAMPM = (Switch)findViewById(R.id.ampmSwitch) ;
+
+        inputGroup = (Switch)findViewById(R.id.groupSwitch);
 
         inputDay = (Spinner)findViewById(R.id.daySpinner);
         inputMonth = (Spinner)findViewById(R.id.monthSpinner);
@@ -98,7 +102,9 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                 eventName = inputName.getText().toString();
                 eventMessage = inputMessage.getText().toString();
                 //need to add time to CalendarCollection
-                CalendarCollection.date_collection_arr.add(new CalendarCollection(date, eventName, eventMessage,hours, mins, time));
+                CalendarCollection.date_collection_arr.add(new CalendarCollection(date, eventName, eventMessage, hours, mins, time));
+                if(inputGroup.isChecked())
+                    GroupCalendarCollection.date_collection_arr.add(new GroupCalendarCollection(date, eventName, eventMessage, hours, mins, time));
                 finish();
 
             default:

@@ -21,7 +21,7 @@ import java.util.GregorianCalendar;
 
 import sonoma.teatimeremake.adapter.CalendarAdapter;
 import sonoma.teatimeremake.adapter.GroupCalendarAdapter;
-import sonoma.teatimeremake.util.CalendarCollection;
+import sonoma.teatimeremake.util.GroupCalendarCollection;
 import sonoma.teatimeremake.util.DayCollection;
 import sonoma.teatimeremake.util.GroupDayCollection;
 
@@ -47,7 +47,7 @@ public class GroupCalendarActivity extends AppCompatActivity {
 
         cal_month = (GregorianCalendar) GregorianCalendar.getInstance();
         cal_month_copy = (GregorianCalendar) cal_month.clone();
-        cal_adapter = new GroupCalendarAdapter(this, cal_month, CalendarCollection.date_collection_arr);
+        cal_adapter = new GroupCalendarAdapter(this, cal_month, GroupCalendarCollection.date_collection_arr);
 
         tv_month = (TextView) findViewById(R.id.tv_month);
         tv_month.setText(android.text.format.DateFormat.format("MMMM yyyy", cal_month));
@@ -81,8 +81,8 @@ public class GroupCalendarActivity extends AppCompatActivity {
 
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
-                ((CalendarAdapter) parent.getAdapter()).setSelected(v, position);
-                String selectedGridDate = CalendarAdapter.day_string.get(position);
+                ((GroupCalendarAdapter) parent.getAdapter()).setSelected(v, position);
+                String selectedGridDate = GroupCalendarAdapter.day_string.get(position);
 
                 String[] separatedTime = selectedGridDate.split("-");
                 String gridvalueString = separatedTime[2].replaceFirst("^0*", "");
@@ -95,9 +95,9 @@ public class GroupCalendarActivity extends AppCompatActivity {
                     setNextMonth();
                     refreshCalendar();
                 }
-                ((CalendarAdapter) parent.getAdapter()).setSelected(v, position);
+                ((GroupCalendarAdapter) parent.getAdapter()).setSelected(v, position);
 
-                ((CalendarAdapter) parent.getAdapter()).getPositionList(selectedGridDate, GroupCalendarActivity.this);
+                ((GroupCalendarAdapter) parent.getAdapter()).getPositionList(selectedGridDate, GroupCalendarActivity.this);
                 if(GroupDayCollection.waitingToRun()) {
                     Context context = getApplicationContext();
                     int duration = Toast.LENGTH_SHORT;
