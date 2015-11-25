@@ -20,7 +20,7 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
     int time;
     private Spinner inputHour, inputMin, inputDay, inputMonth, inputYear;
     private EditText inputMessage, inputName;
-    private Switch inputAMPM, inputGroup;
+    private Switch inputAMPM, inputGroup, inputAllDay;
     //boolean ampm;
 
     @Override
@@ -36,6 +36,7 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
         inputAMPM = (Switch)findViewById(R.id.ampmSwitch) ;
 
         inputGroup = (Switch)findViewById(R.id.groupSwitch);
+        inputAllDay = (Switch)findViewById(R.id.alldaySwitch);
 
         inputDay = (Spinner)findViewById(R.id.daySpinner);
         inputMonth = (Spinner)findViewById(R.id.monthSpinner);
@@ -98,7 +99,11 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                 //date = "2015-01-26";
                 date = String.format("%s-%s-%s", years, months, days);
                 //at moment, unused on purpose
-                time = hours+mins;
+                if(inputAllDay.isChecked())
+                    time = -1;
+                else
+                    time = hours+mins;
+
                 eventName = inputName.getText().toString();
                 eventMessage = inputMessage.getText().toString();
                 //need to add time to CalendarCollection
