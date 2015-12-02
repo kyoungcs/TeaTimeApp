@@ -55,11 +55,17 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                 String days, years;
                 String months;
 
+                String hoursStr, minStr;
                 int hours, mins;
 
-                hours = inputHour.getSelectedItemPosition();
+                hoursStr = inputHour.getSelectedItem().toString();
+                minStr = inputMin.getSelectedItem().toString();
+
+                hours = Integer.parseInt(hoursStr);
+                if(hours == 12)
+                    hours =0;
                 hours = hours * 100;
-                mins = inputMin.getSelectedItemPosition();
+                mins = Integer.parseInt(minStr);
 
                 //ampm = inputAMPM.isChecked();
 
@@ -107,9 +113,9 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                 eventName = inputName.getText().toString();
                 eventMessage = inputMessage.getText().toString();
                 //need to add time to CalendarCollection
-                CalendarCollection.date_collection_arr.add(new CalendarCollection(date, eventName, eventMessage, hours, mins, time));
+                CalendarCollection.date_collection_arr.add(new CalendarCollection(date, eventName, eventMessage, hoursStr, minStr, time));
                 if(inputGroup.isChecked())
-                    GroupCalendarCollection.date_collection_arr.add(new GroupCalendarCollection(date, eventName, eventMessage, hours, mins, time));
+                    GroupCalendarCollection.date_collection_arr.add(new GroupCalendarCollection(date, eventName, eventMessage, hoursStr, minStr, time));
                 finish();
 
             default:

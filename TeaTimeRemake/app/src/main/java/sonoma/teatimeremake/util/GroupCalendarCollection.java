@@ -10,7 +10,7 @@ public class GroupCalendarCollection {
     public String event_message = "";
     public int time = 0;
     public String eventName = "";
-    public int hours, mins;
+    public String hours, mins;
 
     public static ArrayList<GroupCalendarCollection> date_collection_arr;
 
@@ -25,7 +25,7 @@ public class GroupCalendarCollection {
         this.eventName = eventName;
 
     }
-    public GroupCalendarCollection(String date, String eventName, String event_message, int hours, int mins, int time){
+    public GroupCalendarCollection(String date, String eventName, String event_message, String hours, String mins, int time){
 
         this.date = date;
         this.event_message=event_message;
