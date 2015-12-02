@@ -1,10 +1,7 @@
 package sonoma.teatimeremake.adapter;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,8 +17,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
-import sonoma.teatimeremake.CalendarActivity;
-import sonoma.teatimeremake.DayViewActivity;
+
 import sonoma.teatimeremake.R;
 import sonoma.teatimeremake.util.CalendarCollection;
 import sonoma.teatimeremake.util.DayCollection;

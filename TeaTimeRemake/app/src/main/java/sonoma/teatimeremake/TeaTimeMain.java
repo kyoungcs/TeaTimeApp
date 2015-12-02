@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import sonoma.teatimeremake.util.CalendarCollection;
 import sonoma.teatimeremake.util.DayCollection;
 import sonoma.teatimeremake.util.GroupCalendarCollection;
+import sonoma.teatimeremake.util.GroupDayCollection;
 
 public class TeaTimeMain extends AppCompatActivity {
 
@@ -23,6 +24,7 @@ public class TeaTimeMain extends AppCompatActivity {
 
 
         DayCollection.daysEvents = new ArrayList();
+        GroupDayCollection.daysEvents = new ArrayList();
         CalendarCollection.date_collection_arr = new ArrayList();
         CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-11-13", "Dad's Birthday", "Dad Birthday", -1));
 

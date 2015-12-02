@@ -19,7 +19,7 @@ import java.util.Locale;
 
 import sonoma.teatimeremake.R;
 import sonoma.teatimeremake.util.GroupCalendarCollection;
-import sonoma.teatimeremake.util.DayCollection;
+
 import sonoma.teatimeremake.util.GroupDayCollection;
 
 /**
@@ -210,7 +210,7 @@ public class GroupCalendarAdapter extends BaseAdapter {
     }
 
     public void getPositionList(String date, final Activity act){
-        DayCollection.clearEvents();
+        GroupDayCollection.clearEvents();
         int len=GroupCalendarCollection.date_collection_arr.size();
 
         for (int i = 0; i < len; i++) {
@@ -241,10 +241,10 @@ public class GroupCalendarAdapter extends BaseAdapter {
 
             }
         }
-        if(DayCollection.hasEvents())
-            DayCollection.startRunNext();
-         else
-            DayCollection.notNext();
+        if(GroupDayCollection.hasEvents())
+            GroupDayCollection.startRunNext();
+        else
+            GroupDayCollection.notNext();
     }
 }
 

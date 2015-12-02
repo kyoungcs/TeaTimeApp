@@ -99,7 +99,7 @@ public class CalendarActivity extends AppCompatActivity {
 
                 ((CalendarAdapter) parent.getAdapter()).getPositionList(selectedGridDate, CalendarActivity.this);
                 if(DayCollection.waitingToRun()){
-                    Context context = getApplicationContext();
+                    /*Context context = getApplicationContext();
                     int duration = Toast.LENGTH_SHORT;
                     StringBuilder tempDay = new StringBuilder();
                     CalendarCollection tempCal =DayCollection.daysEvents.get(0);
@@ -122,8 +122,8 @@ public class CalendarActivity extends AppCompatActivity {
                     //tempDay.append(tempCal.event_message);
                     //tempDay.append("\n");
                     Toast toast = Toast.makeText(context, tempDay.toString(), duration);
-                    toast.show();
-                    //startActivity(new Intent(CalendarActivity.this,DayViewActivity.class));
+                    toast.show();*/
+                    startActivity(new Intent(CalendarActivity.this,DayViewActivity.class));
                     DayCollection.notNext();
                     DayCollection.clearEvents();
                 }

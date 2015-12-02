@@ -1,6 +1,5 @@
 package sonoma.teatimeremake;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,45 +13,37 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import sonoma.teatimeremake.adapter.CalendarAdapter;
 import sonoma.teatimeremake.adapter.GroupCalendarAdapter;
-import sonoma.teatimeremake.util.GroupCalendarCollection;
 import sonoma.teatimeremake.util.DayCollection;
+import sonoma.teatimeremake.util.GroupCalendarCollection;
 import sonoma.teatimeremake.util.GroupDayCollection;
-
 
 public class GroupCalendarActivity extends AppCompatActivity {
     public GregorianCalendar cal_month, cal_month_copy;
     private GroupCalendarAdapter cal_adapter;
     private TextView tv_month;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_group_calendar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
 
-        //DayCollection.clearEvents();
-        /*DayCollection.daysEvents = new ArrayList();
-        CalendarCollection.date_collection_arr = new ArrayList();
-        CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-11-13","Dad's Birthday", "Dad Birthday", -1));
-*/
-
-
+        GroupDayCollection.clearEvents();
         cal_month = (GregorianCalendar) GregorianCalendar.getInstance();
         cal_month_copy = (GregorianCalendar) cal_month.clone();
         cal_adapter = new GroupCalendarAdapter(this, cal_month, GroupCalendarCollection.date_collection_arr);
 
-        tv_month = (TextView) findViewById(R.id.tv_month);
+        tv_month = (TextView) findViewById(R.id.group_tv_month);
         tv_month.setText(android.text.format.DateFormat.format("MMMM yyyy", cal_month));
 
-        ImageButton previous = (ImageButton) findViewById(R.id.ib_prev);
+        ImageButton previous = (ImageButton) findViewById(R.id.ib_prev_group);
 
         previous.setOnClickListener(new View.OnClickListener() {
 
@@ -63,7 +54,7 @@ public class GroupCalendarActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton next = (ImageButton) findViewById(R.id.Ib_next);
+        ImageButton next = (ImageButton) findViewById(R.id.Ib_next_group);
         next.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -75,14 +66,14 @@ public class GroupCalendarActivity extends AppCompatActivity {
         });
 
 
-        GridView gridview = (GridView) findViewById(R.id.gv_calendar);
+        GridView gridview = (GridView) findViewById(R.id.gv_group_calendar);
         gridview.setAdapter(cal_adapter);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
                 ((GroupCalendarAdapter) parent.getAdapter()).setSelected(v, position);
-                String selectedGridDate = GroupCalendarAdapter.day_string.get(position);
+                String selectedGridDate = CalendarAdapter.day_string.get(position);
 
                 String[] separatedTime = selectedGridDate.split("-");
                 String gridvalueString = separatedTime[2].replaceFirst("^0*", "");
@@ -98,40 +89,48 @@ public class GroupCalendarActivity extends AppCompatActivity {
                 ((GroupCalendarAdapter) parent.getAdapter()).setSelected(v, position);
 
                 ((GroupCalendarAdapter) parent.getAdapter()).getPositionList(selectedGridDate, GroupCalendarActivity.this);
-                if(GroupDayCollection.waitingToRun()) {
-                    Context context = getApplicationContext();
+                if (GroupDayCollection.waitingToRun()) {
+                    /*Context context = getApplicationContext();
                     int duration = Toast.LENGTH_SHORT;
-                    String text = DayCollection.daysEvents.get(0).event_message;
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
-                    //startActivity(new Intent(GroupCalendarActivity.this, DayViewActivity.class));
+                    StringBuilder tempDay = new StringBuilder();
+                    CalendarCollection tempCal =DayCollection.daysEvents.get(0);
+                    if(tempCal.time == -1)
+                    {
+                        tempDay.append("All Day Event - ");
+                    }else{
+                        int temphour = tempCal.hours/100;
+                        if(tempCal.hours > 12){
+                            temphour = temphour - 11;
+                            tempDay.append(temphour);
+                        }
+                        tempDay.append(temphour);
+                        tempDay.append(":");
+                        tempDay.append(tempCal.mins);
+                        tempDay.append(" - ");
+                    }
+                    tempDay.append(tempCal.eventName);
+                    tempDay.append(" ");
+                    //tempDay.append(tempCal.event_message);
+                    //tempDay.append("\n");
+                    Toast toast = Toast.makeText(context, tempDay.toString(), duration);
+                    toast.show();*/
+                    startActivity(new Intent(GroupCalendarActivity.this, DayViewActivity.class));
+                    DayCollection.notNext();
+                    DayCollection.clearEvents();
                 }
+
             }
 
         });
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabgroup);
         fab.setOnClickListener(new View.OnClickListener() {
-
+            @Override
             public void onClick(View view) {
-                startActivity(new Intent(GroupCalendarActivity.this,NewEventActivity.class));
-                refreshCalendar();
-                Snackbar.make(view, "This is for the adding elements.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-            }
-        });
-
-        FloatingActionButton tester = (FloatingActionButton) findViewById(R.id.tester);
-        tester.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                /*
-                do the stuff you want to do in here, probably befor the pop-up
-                */
-                refreshCalendar();
-                Snackbar.make(view, "This is for testing server-side.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
     }
-
     protected void setNextMonth() {
         if (cal_month.get(GregorianCalendar.MONTH) == cal_month.getActualMaximum(GregorianCalendar.MONTH)) {
             cal_month.set((cal_month.get(GregorianCalendar.YEAR) + 1), cal_month.getActualMinimum(GregorianCalendar.MONTH), 1);
@@ -178,3 +177,5 @@ public class GroupCalendarActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+
