@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Tea Time</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_day_view">DayViewActivity</string>
+    <string name="title_activity_day_view">Day View</string>
 
     <string-array name="hours">
 
@@ -145,6 +145,8 @@
         <item>2021</item>
     </string-array>
 
+    <string name="dayEvent"></string>
+
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -248,4 +250,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_activity_tea_time_main">TeaTimeMain</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_group_calendar">GroupCalendarActivity</string>
 </resources>

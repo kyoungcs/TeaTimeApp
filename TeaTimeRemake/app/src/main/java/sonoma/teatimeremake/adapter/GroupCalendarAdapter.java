@@ -17,15 +17,15 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
-
 import sonoma.teatimeremake.R;
-import sonoma.teatimeremake.util.CalendarCollection;
-import sonoma.teatimeremake.util.DayCollection;
+import sonoma.teatimeremake.util.GroupCalendarCollection;
+
+import sonoma.teatimeremake.util.GroupDayCollection;
 
 /**
  * Created by Austin on 11/7/2015.
  */
-public class CalendarAdapter extends BaseAdapter {
+public class GroupCalendarAdapter extends BaseAdapter {
 
     private Context context;
 
@@ -41,11 +41,11 @@ public class CalendarAdapter extends BaseAdapter {
     private ArrayList<String> items;
     public static List<String> day_string;
     private View previousView;
-    public ArrayList<CalendarCollection> date_collection_arr;
+    public ArrayList<GroupCalendarCollection> date_collection_arr;
 
-    public CalendarAdapter(Context context, GregorianCalendar monthCalendar, ArrayList<CalendarCollection> date_collection_arr){
+    public GroupCalendarAdapter(Context context, GregorianCalendar monthCalendar, ArrayList<GroupCalendarCollection> date_collection_arr){
         this.date_collection_arr = date_collection_arr;
-        CalendarAdapter.day_string = new ArrayList<String>();
+        GroupCalendarAdapter.day_string = new ArrayList<String>();
         Locale.setDefault(Locale.US);
         month = monthCalendar;
         selectedDate = (GregorianCalendar) monthCalendar.clone();
@@ -192,9 +192,9 @@ public class CalendarAdapter extends BaseAdapter {
 
     public void setEventView(View v,int pos,TextView txt){
 
-        int len=CalendarCollection.date_collection_arr.size();
+        int len=GroupCalendarCollection.date_collection_arr.size();
         for (int i = 0; i < len; i++) {
-            CalendarCollection cal_obj=CalendarCollection.date_collection_arr.get(i);
+            GroupCalendarCollection cal_obj=GroupCalendarCollection.date_collection_arr.get(i);
             String date=cal_obj.date;
             int len1=day_string.size();
             if (len1>pos) {
@@ -210,11 +210,11 @@ public class CalendarAdapter extends BaseAdapter {
     }
 
     public void getPositionList(String date, final Activity act){
-        DayCollection.clearEvents();
-        int len=CalendarCollection.date_collection_arr.size();
+        GroupDayCollection.clearEvents();
+        int len=GroupCalendarCollection.date_collection_arr.size();
 
         for (int i = 0; i < len; i++) {
-            CalendarCollection cal_collection=CalendarCollection.date_collection_arr.get(i);
+            GroupCalendarCollection cal_collection=GroupCalendarCollection.date_collection_arr.get(i);
             String event_date=cal_collection.date;
 
             //String event_message=cal_collection.event_message;
@@ -223,7 +223,7 @@ public class CalendarAdapter extends BaseAdapter {
 
                 //Toast.makeText(context, "You have event on this date: " + event_date, Toast.LENGTH_LONG).show();
 
-                DayCollection.addEventToday(cal_collection);
+                GroupDayCollection.addEventToday(cal_collection);
 
                 /*new AlertDialog.Builder(context)
                         .setIcon(android.R.drawable.ic_dialog_alert)
@@ -241,10 +241,10 @@ public class CalendarAdapter extends BaseAdapter {
 
             }
         }
-        if(DayCollection.hasEvents())
-            DayCollection.startRunNext();
-         else
-            DayCollection.notNext();
+        if(GroupDayCollection.hasEvents())
+            GroupDayCollection.startRunNext();
+        else
+            GroupDayCollection.notNext();
     }
 }
 

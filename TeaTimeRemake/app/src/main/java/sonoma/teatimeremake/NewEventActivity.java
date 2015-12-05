@@ -8,7 +8,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 
+import sonoma.teatimeremake.adapter.GroupCalendarAdapter;
 import sonoma.teatimeremake.util.CalendarCollection;
+import sonoma.teatimeremake.util.GroupCalendarCollection;
 
 public class NewEventActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -18,7 +20,7 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
     int time;
     private Spinner inputHour, inputMin, inputDay, inputMonth, inputYear;
     private EditText inputMessage, inputName;
-    private Switch inputAMPM;
+    private Switch inputAMPM, inputGroup, inputAllDay;
     //boolean ampm;
 
     @Override
@@ -32,6 +34,9 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
         inputHour = (Spinner)findViewById(R.id.hourSpin);
         inputMin = (Spinner)findViewById(R.id.minuteSpin);
         inputAMPM = (Switch)findViewById(R.id.ampmSwitch) ;
+
+        inputGroup = (Switch)findViewById(R.id.groupSwitch);
+        inputAllDay = (Switch)findViewById(R.id.alldaySwitch);
 
         inputDay = (Spinner)findViewById(R.id.daySpinner);
         inputMonth = (Spinner)findViewById(R.id.monthSpinner);
@@ -50,11 +55,17 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                 String days, years;
                 String months;
 
+                String hoursStr, minStr;
                 int hours, mins;
 
-                hours = inputHour.getSelectedItemPosition();
+                hoursStr = inputHour.getSelectedItem().toString();
+                minStr = inputMin.getSelectedItem().toString();
+
+                hours = Integer.parseInt(hoursStr);
+                if(hours == 12)
+                    hours =0;
                 hours = hours * 100;
-                mins = inputMin.getSelectedItemPosition();
+                mins = Integer.parseInt(minStr);
 
                 //ampm = inputAMPM.isChecked();
 
@@ -94,11 +105,17 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                 //date = "2015-01-26";
                 date = String.format("%s-%s-%s", years, months, days);
                 //at moment, unused on purpose
-                time = hours+mins;
+                if(inputAllDay.isChecked())
+                    time = -1;
+                else
+                    time = hours+mins;
+
                 eventName = inputName.getText().toString();
                 eventMessage = inputMessage.getText().toString();
                 //need to add time to CalendarCollection
-                CalendarCollection.date_collection_arr.add(new CalendarCollection(date, eventName, eventMessage, time));
+                CalendarCollection.date_collection_arr.add(new CalendarCollection(date, eventName, eventMessage, hoursStr, minStr, time));
+                if(inputGroup.isChecked())
+                    GroupCalendarCollection.date_collection_arr.add(new GroupCalendarCollection(date, eventName, eventMessage, hoursStr, minStr, time));
                 finish();
 
             default:
