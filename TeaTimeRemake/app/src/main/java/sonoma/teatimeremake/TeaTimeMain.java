@@ -25,11 +25,17 @@ public class TeaTimeMain extends AppCompatActivity {
 
         DayCollection.daysEvents = new ArrayList();
         GroupDayCollection.daysEvents = new ArrayList();
+
         CalendarCollection.date_collection_arr = new ArrayList();
         CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-11-13", "Dad's Birthday", "Dad Birthday", -1));
+        CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-12-15", "Sister's Birthday", "Sister's Birthday", -1));
 
         GroupCalendarCollection.date_collection_arr = new ArrayList();
         GroupCalendarCollection.date_collection_arr.add(new GroupCalendarCollection("2015-11-26", "Thanksgiving", "Thanksgiving", -1));
+        GroupCalendarCollection.date_collection_arr.add(new GroupCalendarCollection("2015-12-25", "Christmas", "Christmas", -1));
+        GroupCalendarCollection.date_collection_arr.add(new GroupCalendarCollection("2015-11-13", "Dad's Birthday", "Dad Birthday", -1));
+        GroupCalendarCollection.date_collection_arr.add(new GroupCalendarCollection("2015-12-15", "Sister's Birthday", "Sister's Birthday", -1));
+
 
         startActivity(new Intent(TeaTimeMain.this, CalendarActivity.class));
 

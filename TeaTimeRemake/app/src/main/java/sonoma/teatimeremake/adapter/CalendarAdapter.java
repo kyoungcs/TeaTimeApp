@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
@@ -56,6 +57,33 @@ public class CalendarAdapter extends BaseAdapter {
         df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         currentDateString = df.format(selectedDate.getTime());
         refreshDays();
+    }
+
+    private void refreshDays() {
+
+        //this.month = (GregorianCalendar)cal_month.clone();
+        this.pmonth = (GregorianCalendar)this.month.clone();
+        GregorianCalendar tempMonth = new GregorianCalendar(pmonth.YEAR, pmonth.MONTH, pmonth.DAY_OF_MONTH);
+        tempMonth.set(Calendar.DAY_OF_MONTH, 1);
+
+        this.firstDay = tempMonth.get(GregorianCalendar.DAY_OF_WEEK);
+        this.maxWeekNumber = this.month.getActualMaximum(GregorianCalendar.WEEK_OF_MONTH);
+        this.mnthlength = this.maxWeekNumber * 7;
+        this.maxP = this.getMaxP();
+        this.calMaxP = this.maxP - (this.firstDay - 1);
+        this.pmonthMaxSet = (GregorianCalendar)this.pmonth.clone();
+        //i think that this is the thing that needs to be fixxed to make the calendar run properly
+        this.pmonthMaxSet.set(Calendar.WEEK_OF_MONTH, this.calMaxP + 1);
+
+        pmonthMaxSet.set(GregorianCalendar.DAY_OF_MONTH, calMaxP + 1);
+
+        for(int nn = 0; nn < mnthlength; nn++){
+
+            itemvalue = df.format(pmonthMaxSet.getTime());
+            pmonthMaxSet.add(GregorianCalendar.DATE, 1);
+            day_string.add(itemvalue);
+        }
+
     }
 
     public void setItems(ArrayList<String> items){
@@ -153,28 +181,12 @@ public class CalendarAdapter extends BaseAdapter {
         return view;
     }
 
-    public void refreshDays(){
+    public void refreshDays(GregorianCalendar cal_month){
         items.clear();
         day_string.clear();
         Locale.setDefault(Locale.US);
-        this.pmonth = (GregorianCalendar)this.month.clone();
-        this.firstDay = this.month.getActualMinimum(GregorianCalendar.DATE);
-        this.maxWeekNumber = this.month.getActualMaximum(GregorianCalendar.WEEK_OF_MONTH);
-        this.mnthlength = this.maxWeekNumber * 7;
-        this.maxP = this.getMaxP();
-        this.calMaxP = this.maxP - (this.firstDay - 1);
-        this.pmonthMaxSet = (GregorianCalendar)this.pmonth.clone();
-        //i think that this is the thing that needs to be fixxed to make the calendar run properly
-        //this.pmonthMaxSet.set(5, this.calMaxP + 1);
-
-        pmonthMaxSet.set(GregorianCalendar.DAY_OF_MONTH, calMaxP + 1);
-
-        for(int nn = 0; nn < mnthlength; nn++){
-
-            itemvalue = df.format(pmonthMaxSet.getTime());
-            pmonthMaxSet.add(GregorianCalendar.DATE, 1);
-            day_string.add(itemvalue);
-        }
+        this.month = (Calendar)cal_month.clone();
+        refreshDays();
 
     }
 
@@ -213,32 +225,12 @@ public class CalendarAdapter extends BaseAdapter {
         DayCollection.clearEvents();
         int len=CalendarCollection.date_collection_arr.size();
 
-        for (int i = 0; i < len; i++) {
-            CalendarCollection cal_collection=CalendarCollection.date_collection_arr.get(i);
+        for (int ii = 0; ii < len; ii++) {
+            CalendarCollection cal_collection=CalendarCollection.date_collection_arr.get(ii);
             String event_date=cal_collection.date;
 
-            //String event_message=cal_collection.event_message;
-
             if (date.equals(event_date)) {
-
-                //Toast.makeText(context, "You have event on this date: " + event_date, Toast.LENGTH_LONG).show();
-
                 DayCollection.addEventToday(cal_collection);
-
-                /*new AlertDialog.Builder(context)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Date: "+event_date)
-                        //.setMessage("Event: "+event_message)
-                        .setPositiveButton("OK",new android.content.DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-                                act.finish();
-                            }
-                        }).show();
-                break;*/
-            }else{
-
-
             }
         }
         if(DayCollection.hasEvents())

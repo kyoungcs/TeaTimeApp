@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
@@ -152,20 +153,27 @@ public class GroupCalendarAdapter extends BaseAdapter {
 
         return view;
     }
-
-    public void refreshDays(){
+    public void refreshDays(GregorianCalendar cal_month){
         items.clear();
         day_string.clear();
         Locale.setDefault(Locale.US);
+        this.month = (Calendar)cal_month.clone();
+        refreshDays();
+
+    }
+    public void refreshDays(){
         this.pmonth = (GregorianCalendar)this.month.clone();
-        this.firstDay = this.month.getActualMinimum(GregorianCalendar.DATE);
+        GregorianCalendar tempMonth = new GregorianCalendar(pmonth.YEAR, pmonth.MONTH, pmonth.DAY_OF_MONTH);
+        tempMonth.set(Calendar.DAY_OF_MONTH, 1);
+
+        this.firstDay = tempMonth.get(GregorianCalendar.DAY_OF_WEEK);
         this.maxWeekNumber = this.month.getActualMaximum(GregorianCalendar.WEEK_OF_MONTH);
         this.mnthlength = this.maxWeekNumber * 7;
         this.maxP = this.getMaxP();
         this.calMaxP = this.maxP - (this.firstDay - 1);
         this.pmonthMaxSet = (GregorianCalendar)this.pmonth.clone();
         //i think that this is the thing that needs to be fixxed to make the calendar run properly
-        //this.pmonthMaxSet.set(5, this.calMaxP + 1);
+        this.pmonthMaxSet.set(Calendar.WEEK_OF_MONTH, this.calMaxP + 1);
 
         pmonthMaxSet.set(GregorianCalendar.DAY_OF_MONTH, calMaxP + 1);
 
@@ -175,7 +183,6 @@ public class GroupCalendarAdapter extends BaseAdapter {
             pmonthMaxSet.add(GregorianCalendar.DATE, 1);
             day_string.add(itemvalue);
         }
-
     }
 
     private int getMaxP(){
