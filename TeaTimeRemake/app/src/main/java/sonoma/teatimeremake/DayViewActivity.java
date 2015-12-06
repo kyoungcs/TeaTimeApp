@@ -17,6 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import sonoma.teatimeremake.adapter.DayViewAdapter;
 import sonoma.teatimeremake.util.CalendarCollection;
 import sonoma.teatimeremake.util.DayCollection;
 
@@ -29,23 +30,26 @@ public class DayViewActivity extends ListActivity   {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_day_view);
 
 
         Collections.sort(DayCollection.daysEvents);
 
+        dayEventList = (ListView)findViewById(R.id.dayEventList);
+       // ArrayList<String> event = buildDay();
 
-        ArrayList<String> event = buildDay();
+        ArrayAdapter adapter=new DayViewAdapter(this, R.layout.list_view_helper,DayCollection.daysEvents);
+        //setListAdapter(new DayViewAdapter(this, DayCollection.daysEvents));
 
-        setListAdapter(new ArrayAdapter<String>(this, R.layout.content_day_view2, event));
+        //dayEventList = getListView();
+        //dayEventList.setTextFilterEnabled(true);
 
-        dayEventList = getListView();
-        dayEventList.setTextFilterEnabled(true);
-
+        dayEventList.setAdapter(adapter);
 
         //viewDayEvent = (TextView) findViewById(R.id.dayEventView);
 
-        setContentView(R.layout.activity_day_view);
-        //dayEventList = (ListView)findViewById(R.id.dayEventList);
+        //setContentView(R.layout.activity_day_view);
+
 
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
@@ -53,8 +57,7 @@ public class DayViewActivity extends ListActivity   {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 // When clicked, show a toast with the TextView text
-                Toast.makeText(getApplicationContext(),
-                        ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
             }
         });
 
