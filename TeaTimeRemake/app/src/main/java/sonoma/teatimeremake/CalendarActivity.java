@@ -125,7 +125,7 @@ public class CalendarActivity extends AppCompatActivity {
                     toast.show();*/
                     startActivity(new Intent(CalendarActivity.this,DayViewActivity.class));
                     DayCollection.notNext();
-                    DayCollection.clearEvents();
+                    //DayCollection.clearEvents();
                 }
 
             }
@@ -174,7 +174,7 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
     public void refreshCalendar() {
-        cal_adapter.refreshDays();
+        cal_adapter.refreshDays(cal_month);
         cal_adapter.notifyDataSetChanged();
         tv_month.setText(android.text.format.DateFormat.format("MMMM yyyy", cal_month));
     }
