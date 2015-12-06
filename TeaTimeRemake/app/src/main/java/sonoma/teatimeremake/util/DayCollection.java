@@ -80,6 +80,6 @@ public class DayCollection implements Comparable {
 
     public CalendarCollection getCalEvent(){return this.calEvent;}
 
-    public String getEventString(){return eventString;}
+    public String getEventString(){return this.eventString;}
 
 }

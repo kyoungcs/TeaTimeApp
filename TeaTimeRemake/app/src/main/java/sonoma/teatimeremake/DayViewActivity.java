@@ -21,7 +21,7 @@ import sonoma.teatimeremake.adapter.DayViewAdapter;
 import sonoma.teatimeremake.util.CalendarCollection;
 import sonoma.teatimeremake.util.DayCollection;
 
-public class DayViewActivity extends ListActivity   {
+public class DayViewActivity extends AppCompatActivity  {
 //    private TextView viewDayEvent;
     private ListView dayEventList;
 

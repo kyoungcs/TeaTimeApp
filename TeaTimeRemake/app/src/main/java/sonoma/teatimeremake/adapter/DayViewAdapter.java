@@ -41,15 +41,17 @@ public class DayViewAdapter extends ArrayAdapter<DayCollection>{
         if(v == null){
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.content_day_display, null);
+            v = vi.inflate(R.layout.list_view_helper, null);
 
         }
         DayCollection calEvent= getItem(position);
 
         if (calEvent != null){
             TextView eventTime = (TextView) v.findViewById(R.id.label);
-            eventTime.setText(dayCol.get(position).getEventString());
+            String tempString = dayCol.get(position).getEventString();
+            eventTime.setText(tempString);
         }
+
         return v;
     }
 
