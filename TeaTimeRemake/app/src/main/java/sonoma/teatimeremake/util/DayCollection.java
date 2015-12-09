@@ -14,7 +14,6 @@ public class DayCollection implements Comparable {
     private String eventString;
 
 
-
     DayCollection(CalendarCollection cal_collection){
         this.calEvent=cal_collection;
         this.time = cal_collection.time;

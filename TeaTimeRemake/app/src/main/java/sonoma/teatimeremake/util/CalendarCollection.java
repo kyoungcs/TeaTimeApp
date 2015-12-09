@@ -35,4 +35,11 @@ public class CalendarCollection {
         this.eventName = eventName;
 
     }
+
+    public String getDate(){
+        return this.date;
+    }
+
+    public static int getLengthOfArray(){return date_collection_arr.size();}
+
 }
