@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.GregorianCalendar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,14 +15,18 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import sonoma.teatimeremake.adapter.CalendarAdapter;
+import sonoma.teatimeremake.adapter.FrontPageAdapter;
 import sonoma.teatimeremake.util.CalendarCollection;
 import sonoma.teatimeremake.util.DayCollection;
+import sonoma.teatimeremake.util.FrontPageCollection;
 
 
 public class CalendarActivity extends AppCompatActivity {
@@ -98,7 +103,7 @@ public class CalendarActivity extends AppCompatActivity {
                 ((CalendarAdapter) parent.getAdapter()).setSelected(v, position);
 
                 ((CalendarAdapter) parent.getAdapter()).getPositionList(selectedGridDate, CalendarActivity.this);
-                if(DayCollection.waitingToRun()){
+                if (DayCollection.waitingToRun()) {
                     /*Context context = getApplicationContext();
                     int duration = Toast.LENGTH_SHORT;
                     StringBuilder tempDay = new StringBuilder();
@@ -123,7 +128,7 @@ public class CalendarActivity extends AppCompatActivity {
                     //tempDay.append("\n");
                     Toast toast = Toast.makeText(context, tempDay.toString(), duration);
                     toast.show();*/
-                    startActivity(new Intent(CalendarActivity.this,DayViewActivity.class));
+                    startActivity(new Intent(CalendarActivity.this, DayViewActivity.class));
                     DayCollection.notNext();
                     //DayCollection.clearEvents();
                 }
@@ -131,6 +136,26 @@ public class CalendarActivity extends AppCompatActivity {
             }
 
         });
+
+        getFrontPageList();
+
+        Collections.sort(DayCollection.daysEvents);
+
+        ListView frontList;
+        frontList = (ListView)findViewById(R.id.dayEventList);
+
+        ArrayAdapter adapter=new FrontPageAdapter(this, R.layout.list_view_helper, FrontPageCollection.daysEvents);
+
+        frontList.setAdapter(adapter);
+
+        frontList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                // When clicked, show a toast with the TextView text
+                //Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -153,6 +178,11 @@ public class CalendarActivity extends AppCompatActivity {
                 //Snackbar.make(view, "This is for testing server-side.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
+    }
+
+    private void getFrontPageList() {
+        GregorianCalendar tempCal;
+        
     }
 
     protected void setNextMonth() {
