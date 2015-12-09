@@ -36,23 +36,11 @@ public class DayViewActivity extends AppCompatActivity  {
         Collections.sort(DayCollection.daysEvents);
 
         dayEventList = (ListView)findViewById(R.id.dayEventList);
-       // ArrayList<String> event = buildDay();
 
         ArrayAdapter adapter=new DayViewAdapter(this, R.layout.list_view_helper,DayCollection.daysEvents);
-        //setListAdapter(new DayViewAdapter(this, DayCollection.daysEvents));
-
-        //dayEventList = getListView();
-        //dayEventList.setTextFilterEnabled(true);
 
         dayEventList.setAdapter(adapter);
 
-        //viewDayEvent = (TextView) findViewById(R.id.dayEventView);
-
-        //setContentView(R.layout.activity_day_view);
-
-
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
         dayEventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
@@ -80,7 +68,7 @@ public class DayViewActivity extends AppCompatActivity  {
 
         for(int ii=0; ii < DayCollection.daysEvents.size(); ii++){
             tempBuild = buildEvent(DayCollection.daysEvents.get(ii).getCalEvent());
-            dayEvents.add(tempBuild.toString());
+            //dayEvents.add(tempBuild.toString());
 
         }
 

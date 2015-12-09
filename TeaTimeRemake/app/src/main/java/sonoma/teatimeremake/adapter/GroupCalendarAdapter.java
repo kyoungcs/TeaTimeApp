@@ -230,7 +230,7 @@ public class GroupCalendarAdapter extends BaseAdapter {
 
                 //Toast.makeText(context, "You have event on this date: " + event_date, Toast.LENGTH_LONG).show();
 
-                GroupDayCollection.addEventToday(cal_collection);
+                GroupDayCollection.addGroupEventToday(cal_collection);
 
                 /*new AlertDialog.Builder(context)
                         .setIcon(android.R.drawable.ic_dialog_alert)

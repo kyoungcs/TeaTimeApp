@@ -253,4 +253,5 @@
     <string name="title_activity_tea_time_main">TeaTimeMain</string>
     <string name="title_activity_menu">MenuActivity</string>
     <string name="title_activity_group_calendar">GroupCalendarActivity</string>
+    <string name="title_activity_group_day">GroupDayActivity</string>
 </resources>

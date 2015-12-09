@@ -53,6 +53,11 @@
             android:label="@string/title_activity_group_calendar"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".GroupDayActivity"
+            android:label="@string/title_activity_group_day"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

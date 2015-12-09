@@ -90,31 +90,8 @@ public class GroupCalendarActivity extends AppCompatActivity {
 
                 ((GroupCalendarAdapter) parent.getAdapter()).getPositionList(selectedGridDate, GroupCalendarActivity.this);
                 if (GroupDayCollection.waitingToRun()) {
-                    /*Context context = getApplicationContext();
-                    int duration = Toast.LENGTH_SHORT;
-                    StringBuilder tempDay = new StringBuilder();
-                    CalendarCollection tempCal =DayCollection.daysEvents.get(0);
-                    if(tempCal.time == -1)
-                    {
-                        tempDay.append("All Day Event - ");
-                    }else{
-                        int temphour = tempCal.hours/100;
-                        if(tempCal.hours > 12){
-                            temphour = temphour - 11;
-                            tempDay.append(temphour);
-                        }
-                        tempDay.append(temphour);
-                        tempDay.append(":");
-                        tempDay.append(tempCal.mins);
-                        tempDay.append(" - ");
-                    }
-                    tempDay.append(tempCal.eventName);
-                    tempDay.append(" ");
-                    //tempDay.append(tempCal.event_message);
-                    //tempDay.append("\n");
-                    Toast toast = Toast.makeText(context, tempDay.toString(), duration);
-                    toast.show();*/
-                    startActivity(new Intent(GroupCalendarActivity.this, DayViewActivity.class));
+
+                    startActivity(new Intent(GroupCalendarActivity.this, GroupDayActivity.class));
                     DayCollection.notNext();
                     DayCollection.clearEvents();
                 }
