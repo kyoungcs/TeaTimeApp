@@ -181,8 +181,29 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
     private void getFrontPageList() {
+        GregorianCalendar todayCal = new GregorianCalendar();
+
         GregorianCalendar tempCal;
-        
+
+        for (int ii =0; ii < CalendarCollection.getLengthOfArray(); ii++){
+            CalendarCollection calCol = CalendarCollection.date_collection_arr.get(ii);
+            //String fulldate = calCol.getDate();
+            String year = calCol.getDate().substring(0, 4);
+            String month = calCol.getDate().substring(5,7);
+            String day = calCol.getDate().substring(8, 10);
+
+            if(calCol.time == -1)
+                tempCal = new GregorianCalendar(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+            else
+                tempCal = new GregorianCalendar(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), Integer.parseInt(calCol.hours), Integer.parseInt(calCol.mins));
+
+            if(todayCal.equals(tempCal)){
+                FrontPageCollection.addEventToList(calCol);
+            }else if(todayCal.before(tempCal)){
+                FrontPageCollection.addEventToList(calCol);
+            }
+
+        }
     }
 
     protected void setNextMonth() {
