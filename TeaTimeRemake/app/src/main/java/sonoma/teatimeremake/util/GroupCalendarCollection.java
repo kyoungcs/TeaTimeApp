@@ -14,9 +14,6 @@ public class GroupCalendarCollection {
 
     public static ArrayList<GroupCalendarCollection> date_collection_arr;
 
-    public GroupCalendarCollection(){
-    }
-
     public GroupCalendarCollection(String date, String eventName, String event_message, int time){
 
         this.date = date;
