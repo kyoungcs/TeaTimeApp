@@ -21,9 +21,11 @@ public class FrontPageCollection implements Comparable {
 
     private String makeString(CalendarCollection cal_collection) {
         StringBuilder tempDay = new StringBuilder();
+        tempDay.append(cal_collection.date);
+        tempDay.append(" - ");
         if(cal_collection.time == -1)
         {
-            tempDay.append("All Day Event - ");
+            tempDay.append(" All Day - ");
         }else{
             tempDay.append(cal_collection.hours);
             tempDay.append(":");
