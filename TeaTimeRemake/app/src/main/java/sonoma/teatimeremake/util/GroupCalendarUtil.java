@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class GroupCalendarUtil {
     public static ArrayList<GroupCalendarUtil> groupCals;
+    public static int findID;
 
     private int calID;
     private String calName;

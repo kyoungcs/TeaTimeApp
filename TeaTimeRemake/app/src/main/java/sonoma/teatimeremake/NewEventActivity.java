@@ -139,7 +139,6 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
             default:
                 break;
         }
-
     }
 
     private void addGroupEvent(String str, String hoursStr, String minStr) {

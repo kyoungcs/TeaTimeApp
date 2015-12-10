@@ -173,7 +173,7 @@ public class CalendarActivity extends AppCompatActivity {
                 /*
                 do the stuff you want to do in here, probably befor the pop-up
                 */
-                startActivity(new Intent(CalendarActivity.this, GroupCalendarActivity.class));
+                startActivity(new Intent(CalendarActivity.this, GroupCalendarSelectionActivity.class));
                 refreshCalendar();
                 //Snackbar.make(view, "This is for testing server-side.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }

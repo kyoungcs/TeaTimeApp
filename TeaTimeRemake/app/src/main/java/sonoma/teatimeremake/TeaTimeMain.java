@@ -31,6 +31,7 @@ public class TeaTimeMain extends AppCompatActivity {
 
         GroupCalendarUtil.groupCals = new ArrayList();
         GroupCalendarUtil.groupCals.add(new GroupCalendarUtil(50, "Basic Group Calendar"));
+        GroupCalendarUtil.groupCals.add(new GroupCalendarUtil(100, "Other Group Calendar"));
 
 
         CalendarCollection.date_collection_arr = new ArrayList();

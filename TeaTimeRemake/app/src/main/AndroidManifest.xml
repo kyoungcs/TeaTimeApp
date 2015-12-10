@@ -60,6 +60,8 @@
         </activity>
         <activity android:name=".GroupCalendarSelectionActivity" >
         </activity>
+        <activity android:name=".GroupCalSelect" >
+        </activity>
     </application>
 
 </manifest>
