@@ -21,6 +21,7 @@ import java.util.Locale;
 import sonoma.teatimeremake.R;
 import sonoma.teatimeremake.util.GroupCalendarCollection;
 
+import sonoma.teatimeremake.util.GroupCalendarUtil;
 import sonoma.teatimeremake.util.GroupDayCollection;
 
 /**
@@ -202,15 +203,17 @@ public class GroupCalendarAdapter extends BaseAdapter {
         int len=GroupCalendarCollection.date_collection_arr.size();
         for (int i = 0; i < len; i++) {
             GroupCalendarCollection cal_obj=GroupCalendarCollection.date_collection_arr.get(i);
-            String date=cal_obj.date;
-            int len1=day_string.size();
-            if (len1>pos) {
+            if(cal_obj.calID == GroupCalendarUtil.findID) {
+                String date = cal_obj.date;
+                int len1 = day_string.size();
+                if (len1 > pos) {
 
-                if (day_string.get(pos).equals(date)) {
-                    v.setBackgroundColor(Color.parseColor("#343434"));
-                    v.setBackgroundResource(R.drawable.rounded_calendar_item);
+                    if (day_string.get(pos).equals(date)) {
+                        v.setBackgroundColor(Color.parseColor("#343434"));
+                        v.setBackgroundResource(R.drawable.rounded_calendar_item);
 
-                    txt.setTextColor(Color.WHITE);
+                        txt.setTextColor(Color.WHITE);
+                    }
                 }
             }
         }
