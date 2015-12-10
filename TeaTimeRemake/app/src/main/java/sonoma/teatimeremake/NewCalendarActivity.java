@@ -38,6 +38,7 @@ public class NewCalendarActivity extends AppCompatActivity implements View.OnCli
 
                 GroupCalendarUtil.groupCals.add(new GroupCalendarUtil(tempInt,newCalName));
 
+                //GroupCalendarSelectionActivity.add();
                 finish();
             default:
                 break;

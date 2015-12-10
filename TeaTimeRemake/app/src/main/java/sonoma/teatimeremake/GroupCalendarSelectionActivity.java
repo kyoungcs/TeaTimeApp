@@ -36,8 +36,7 @@ public class GroupCalendarSelectionActivity extends AppCompatActivity implements
         newCalButton.setOnClickListener(this);
     }
 
-    private void add() {
-        GroupCalendarUtil.groupCals.clear();
+    public void add() {
 
         for(int jj =0 ; jj<GroupCalendarUtil.groupCals.size(); jj++){
             calList.add(GroupCalendarUtil.groupCals.get(jj).getCalName());
@@ -58,7 +57,7 @@ public class GroupCalendarSelectionActivity extends AppCompatActivity implements
             case R.id.MakeNewCalendarButton:
                 startActivity(new Intent(GroupCalendarSelectionActivity.this, NewCalendarActivity.class));
 
-                add();
+
             default:
                 break;
         }
