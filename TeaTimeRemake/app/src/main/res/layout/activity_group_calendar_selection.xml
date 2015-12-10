@@ -41,5 +41,18 @@
                 android:text="Go To Calendar"
                 android:id="@+id/GoTobutton" />
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add New Calendar"
+                android:id="@+id/MakeNewCalendarButton"/>
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

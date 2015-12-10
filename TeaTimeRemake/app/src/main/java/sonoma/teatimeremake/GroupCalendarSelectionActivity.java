@@ -18,7 +18,7 @@ public class GroupCalendarSelectionActivity extends AppCompatActivity implements
     private ArrayList<String> calList;
 
     private Spinner calSel;
-    private Button nextButton;
+    private Button nextButton, newCalButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,9 +31,14 @@ public class GroupCalendarSelectionActivity extends AppCompatActivity implements
 
         calList = new ArrayList<String>();
         add();
+
+        newCalButton = (Button) findViewById(R.id.MakeNewCalendarButton);
+        newCalButton.setOnClickListener(this);
     }
 
     private void add() {
+        GroupCalendarUtil.groupCals.clear();
+
         for(int jj =0 ; jj<GroupCalendarUtil.groupCals.size(); jj++){
             calList.add(GroupCalendarUtil.groupCals.get(jj).getCalName());
         }
@@ -50,6 +55,10 @@ public class GroupCalendarSelectionActivity extends AppCompatActivity implements
                 GroupCalendarUtil.findID = calID;
 
                 startActivity(new Intent(GroupCalendarSelectionActivity.this, GroupCalendarActivity.class));
+            case R.id.MakeNewCalendarButton:
+                startActivity(new Intent(GroupCalendarSelectionActivity.this, NewCalendarActivity.class));
+
+                add();
             default:
                 break;
         }
