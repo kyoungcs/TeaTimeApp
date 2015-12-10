@@ -185,6 +185,13 @@ public class CalendarActivity extends AppCompatActivity {
 
         GregorianCalendar tempCal;
 
+        int checkYear, checkMonth, checkDay;
+        int todayYear, todayMonth, todayDay;
+
+        todayYear = todayCal.get(GregorianCalendar.YEAR);
+        todayMonth = todayCal.get(GregorianCalendar.MONTH);
+        todayDay = todayCal.get(GregorianCalendar.DATE);
+
         for (int ii =0; ii < CalendarCollection.getLengthOfArray(); ii++){
             CalendarCollection calCol = CalendarCollection.date_collection_arr.get(ii);
             //String fulldate = calCol.getDate();
@@ -192,16 +199,29 @@ public class CalendarActivity extends AppCompatActivity {
             String month = calCol.getDate().substring(5,7);
             String day = calCol.getDate().substring(8, 10);
 
+            checkYear = Integer.parseInt(year);
+            checkMonth = Integer.parseInt(month);
+            checkDay = Integer.parseInt(day);
+
+            checkMonth=checkMonth-1;
+
+
             if(calCol.time == -1)
                 tempCal = new GregorianCalendar(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
             else
                 tempCal = new GregorianCalendar(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), Integer.parseInt(calCol.hours), Integer.parseInt(calCol.mins));
 
-            if(todayCal.equals(tempCal)){
+            if(todayYear==checkYear && todayMonth==checkMonth && todayDay==checkDay){
+                FrontPageCollection.addEventToList(calCol);
+            }else if(todayYear<=checkYear && todayMonth<=checkMonth && todayDay<checkDay){
+                FrontPageCollection.addEventToList(calCol);
+            }
+
+            /*if(todayCal.equals(tempCal)){
                 FrontPageCollection.addEventToList(calCol);
             }else if(todayCal.before(tempCal)){
                 FrontPageCollection.addEventToList(calCol);
-            }
+            }*/
 
         }
     }
