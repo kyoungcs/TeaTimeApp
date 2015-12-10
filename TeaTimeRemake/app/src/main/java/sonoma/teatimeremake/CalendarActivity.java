@@ -141,6 +141,11 @@ public class CalendarActivity extends AppCompatActivity {
 
         Collections.sort(DayCollection.daysEvents);
 
+        if(FrontPageCollection.daysEvents.size()>10){
+            while(FrontPageCollection.daysEvents.size() > 10)
+            FrontPageCollection.daysEvents.remove(FrontPageCollection.daysEvents.size());
+        }
+
         ListView frontList;
         frontList = (ListView)findViewById(R.id.dayEventList);
 
@@ -218,6 +223,7 @@ public class CalendarActivity extends AppCompatActivity {
             }else if(todayYear<checkYear){
                 FrontPageCollection.addEventToList(calCol);
             }
+
 
             /*if(todayCal.equals(tempCal)){
                 FrontPageCollection.addEventToList(calCol);
