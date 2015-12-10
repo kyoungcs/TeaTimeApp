@@ -18,7 +18,7 @@ public class GroupCalendarSelectionActivity extends AppCompatActivity implements
     private ArrayList<String> calList;
 
     private Spinner calSel;
-    private Button nextButton, newCalButton;
+    private Button nextButton, newCalButton, inviteButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +31,9 @@ public class GroupCalendarSelectionActivity extends AppCompatActivity implements
 
         calList = new ArrayList<String>();
         add();
+
+        inviteButton = (Button)findViewById(R.id.inviteActivity);
+        inviteButton.setOnClickListener(this);
 
         newCalButton = (Button) findViewById(R.id.MakeNewCalendarButton);
         newCalButton.setOnClickListener(this);
@@ -57,6 +60,8 @@ public class GroupCalendarSelectionActivity extends AppCompatActivity implements
             case R.id.MakeNewCalendarButton:
                 startActivity(new Intent(GroupCalendarSelectionActivity.this, NewCalendarActivity.class));
 
+            case R.id.inviteActivity:
+                startActivity(new Intent(GroupCalendarSelectionActivity.this, InvitingOtherPeopleActivity.class));
 
             default:
                 break;

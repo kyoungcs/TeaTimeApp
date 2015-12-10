@@ -64,6 +64,8 @@
         </activity>
         <activity android:name=".NewCalendarActivity" >
         </activity>
+        <activity android:name=".InvitingOtherPeopleActivity" >
+        </activity>
     </application>
 
 </manifest>
