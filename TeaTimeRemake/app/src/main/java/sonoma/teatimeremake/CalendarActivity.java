@@ -213,7 +213,9 @@ public class CalendarActivity extends AppCompatActivity {
 
             if(todayYear==checkYear && todayMonth==checkMonth && todayDay==checkDay){
                 FrontPageCollection.addEventToList(calCol);
-            }else if(todayYear<=checkYear && todayMonth<=checkMonth && todayDay<checkDay){
+            }else if(todayYear==checkYear && todayMonth<=checkMonth && todayDay<checkDay){
+                FrontPageCollection.addEventToList(calCol);
+            }else if(todayYear<checkYear){
                 FrontPageCollection.addEventToList(calCol);
             }
 
