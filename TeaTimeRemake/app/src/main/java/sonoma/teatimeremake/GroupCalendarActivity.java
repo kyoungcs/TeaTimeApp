@@ -73,7 +73,7 @@ public class GroupCalendarActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
                 ((GroupCalendarAdapter) parent.getAdapter()).setSelected(v, position);
-                String selectedGridDate = CalendarAdapter.day_string.get(position);
+                String selectedGridDate = GroupCalendarAdapter.day_string.get(position);
 
                 String[] separatedTime = selectedGridDate.split("-");
                 String gridvalueString = separatedTime[2].replaceFirst("^0*", "");
@@ -92,8 +92,8 @@ public class GroupCalendarActivity extends AppCompatActivity {
                 if (GroupDayCollection.waitingToRun()) {
 
                     startActivity(new Intent(GroupCalendarActivity.this, GroupDayActivity.class));
-                    DayCollection.notNext();
-                    DayCollection.clearEvents();
+                    GroupDayCollection.notNext();
+                    GroupDayCollection.clearEvents();
                 }
 
             }
