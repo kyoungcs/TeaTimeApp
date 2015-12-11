@@ -10,13 +10,30 @@ public class FrontPageCollection implements Comparable {
 
     private CalendarCollection calEvent;
     private int time;
+    private int date;
     private String eventString;
 
 
     FrontPageCollection(CalendarCollection cal_collection){
         this.calEvent=cal_collection;
         this.time = cal_collection.time;
+        this.date = dateInt(cal_collection.date);
         this.eventString = makeString(cal_collection);
+    }
+
+    private int dateInt(String date) {
+        int checkYear, checkMonth, checkDay;
+
+        String year = date.substring(0, 4);
+        String month = date.substring(5,7);
+        String day = date.substring(8, 10);
+
+        checkYear = Integer.parseInt(year);
+        checkMonth = Integer.parseInt(month);
+        checkDay = Integer.parseInt(day);
+
+        return (checkYear*10000)+ (checkMonth * 100)+(checkDay);
+
     }
 
     private String makeString(CalendarCollection cal_collection) {
@@ -50,9 +67,9 @@ public class FrontPageCollection implements Comparable {
 
     @Override
     public int compareTo(Object another) {
-        int compareTime =((FrontPageCollection)another).getTime();
+        int compareDay =((FrontPageCollection)another).getDate();
 
-        return this.time-compareTime;
+        return this.date-compareDay;
     }
 
     public int getTime() {
@@ -61,5 +78,9 @@ public class FrontPageCollection implements Comparable {
 
     public String getEventString() {
         return eventString;
+    }
+
+    public int getDate() {
+        return date;
     }
 }

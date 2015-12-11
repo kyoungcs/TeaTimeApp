@@ -139,7 +139,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         getFrontPageList();
 
-        Collections.sort(DayCollection.daysEvents);
+        Collections.sort(FrontPageCollection.daysEvents);
 
         if(FrontPageCollection.daysEvents.size()>10){
             while(FrontPageCollection.daysEvents.size() > 10)
@@ -183,10 +183,25 @@ public class CalendarActivity extends AppCompatActivity {
                 //Snackbar.make(view, "This is for testing server-side.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
+        FloatingActionButton refresh = (FloatingActionButton) findViewById(R.id.refresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                /*
+                do the stuff you want to do in here, probably befor the pop-up
+                */
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+                //Snackbar.make(view, "This is for testing server-side.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            }
+        });
     }
 
     private void getFrontPageList() {
         GregorianCalendar todayCal = new GregorianCalendar();
+
+
+        FrontPageCollection.daysEvents.clear();
 
         GregorianCalendar tempCal;
 

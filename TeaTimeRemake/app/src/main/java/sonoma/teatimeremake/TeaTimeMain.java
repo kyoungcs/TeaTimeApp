@@ -37,6 +37,13 @@ public class TeaTimeMain extends AppCompatActivity {
         CalendarCollection.date_collection_arr = new ArrayList();
         CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-11-13", "Dad's Birthday", "Dad Birthday", -1));
         CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-12-15", "Sister's Birthday", "Sister's Birthday", -1));
+        //CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-11-13", "Dad's Birthday", "Dad Birthday", -1));
+        //CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-12-15", "Sister's Birthday", "Sister's Birthday", -1));
+        CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-12-13", "Running", "running", -1));
+        CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-12-16", "Planning", "for Trip", -1));
+        CalendarCollection.date_collection_arr.add(new CalendarCollection("2015-12-23", "Travel", "Travel", -1));
+        //CalendarCollection.date_collection_arr.add(new CalendarCollection("2016-1-15", "A thing", "Sister's Birthday", -1));
+
 
         GroupCalendarCollection.date_collection_arr = new ArrayList();
         GroupCalendarCollection.date_collection_arr.add(new GroupCalendarCollection("2015-11-26", "Thanksgiving", "Thanksgiving", -1, GroupCalendarUtil.groupCals.get(0).getCalID() ,GroupCalendarUtil.groupCals.get(0).getCalName()));

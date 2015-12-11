@@ -57,12 +57,15 @@ public class GroupCalendarSelectionActivity extends AppCompatActivity implements
                 GroupCalendarUtil.findID = calID;
 
                 startActivity(new Intent(GroupCalendarSelectionActivity.this, GroupCalendarActivity.class));
+                break;
             case R.id.MakeNewCalendarButton:
                 startActivity(new Intent(GroupCalendarSelectionActivity.this, NewCalendarActivity.class));
+                break;
 
             case R.id.inviteActivity:
                 startActivity(new Intent(GroupCalendarSelectionActivity.this, InvitingOtherPeopleActivity.class));
 
+                break;
             default:
                 break;
         }
